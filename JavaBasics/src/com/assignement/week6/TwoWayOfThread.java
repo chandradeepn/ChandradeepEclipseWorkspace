@@ -1,0 +1,73 @@
+package com.assignement.week6;
+
+class College extends Thread{
+	
+	private int id;
+	private String clg_name;
+	
+	public void data(int id1,String name) {
+		this.id=id1;
+		this.clg_name=name;
+		System.out.println("The clg id is: "+id1+" "+"and the clg name is "+name);
+		try {
+			Thread.sleep(1000);
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
+	}
+}
+
+
+class Student implements Runnable{
+
+	private int id;
+	private String stud_name;
+	private int age;
+	private String stud_address;
+	
+	public void data(int id1,String name,int age1,String address) {
+		this.id=id1;
+		this.stud_name=name;
+		this.age=age1;
+		this.stud_address=address;
+		System.out.println("Student Id is "+id1+" "+"and the name of the student is "+name+
+				" "+"and the age is"+age+" "+"student address is "+address);
+		try {
+			Thread.sleep(100);
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
+	}
+	public void run() {
+		data(1,"usha",21,"atp");
+		data(2,"greeshma",22,"knl");
+		data(3,"meghana",22,"tpt");
+		data(4,"likitha",21,"prod");
+		data(5,"hema",22,"tdp");
+		
+	}
+	
+}
+
+public class TwoWayOfThread {
+
+	private static void ThreadPrint() {
+		College c=new College();
+		c.data(1, "svec");
+		c.data(2, "aits");
+		c.data(3, "rgm");
+		c.data(4, "mits");
+		
+		System.out.println();
+		
+		Student st=new Student();
+		Thread t1=new Thread(st);
+		st.run();
+	}
+	public static void main(String[] args) {
+	
+		ThreadPrint();
+
+	}
+
+}
